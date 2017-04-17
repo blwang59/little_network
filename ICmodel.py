@@ -7,7 +7,7 @@ network = json.load(open('./network_final.json'))
 def ICmodel(net,seeds,times):
 
 	net=network
-	fr = open('./ICres.txt', 'w', encoding='utf-8')
+	fr = open('./ICres_time1.txt', 'w', encoding='utf-8')
 	for i in range(times):
 		target = []
 		active = []
@@ -36,7 +36,7 @@ def ICmodel(net,seeds,times):
 
 
 
-ICmodel(network,"4688",100)
+ICmodel(network,"4688",1)
 
 
 
