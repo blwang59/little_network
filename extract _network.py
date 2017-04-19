@@ -75,7 +75,7 @@ with codecs.open('./AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') a
 
 
 fr = open('./network_dict_test.json', 'w',encoding = 'utf-8',errors='ignore')
-json.dump(network,fr)
+json.dump(network,ensure_ascii=False)
 
 # fr.close()
 # for author1 in network:

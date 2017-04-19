@@ -13,4 +13,4 @@ for i in network:
 
 
 fr = open('./network_final.json', 'w',encoding = 'utf-8',errors='ignore')
-json.dump(network,fr)
+json.dump(network,fr,ensure_ascii=False)
