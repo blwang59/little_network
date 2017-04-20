@@ -1,16 +1,16 @@
 import json
 import random
 
-network = json.load(open('./network_final.json'))
+network = json.load(open('./inter_res/network_final.json'))
 
 
 def ICmodel(net,seeds,times):
 
 	net=network
-	fr = open('./ICres_time.txt', 'w', encoding='utf-8')
+	fr = open('./inter_res/ICres.txt', 'w', encoding='utf-8')
 	for i in range(times):
 		target = []
-		active = []
+		active = set()
 	# for i in net:
 	# 	for j in net[i]:
 
@@ -21,13 +21,14 @@ def ICmodel(net,seeds,times):
 		ltimes = 0
 		while(target):
 			ltimes+=1
-			node = target.pop()
+			node = target.pop(0)
 
-			active.append(node)
-			for follower in net[node].keys():
+			#active.append(node)
+			for follower in net[node]:
 				if random.random() <= net[node][follower]:
 					if follower not in active:
 						target.append(follower)
+						active.add(follower)
 						fr.write(node + ' ' + follower + ' '+str(ltimes)+'\n')
 
 		fr.write('\n')

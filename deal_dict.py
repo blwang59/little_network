@@ -1,6 +1,6 @@
 import json
 import codecs
-network = json.load(open('./network_dict_test.json'))
+network = json.load(open('./inter_res/network_dict_test.json'))
 papers_per_author = {}
 with codecs.open('./author_with_aff.txt', 'r', encoding='utf-8', errors='ignore') as f1:
     for line in f1:
@@ -12,5 +12,5 @@ for i in network:
 		network[i][j] = network[i][j]/int(papers_per_author[j])
 
 
-fr = open('./network_final.json', 'w',encoding = 'utf-8',errors='ignore')
+fr = open('./inter_res/network_final.json', 'w',encoding = 'utf-8',errors='ignore')
 json.dump(network,fr,ensure_ascii=False)

@@ -52,9 +52,10 @@ with codecs.open('./AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') a
                      
                    
                         if str(index_of_author[mess['#@'+str(i)]+':'+mess['#o'+str(i)]]) not in network or \
-                                    str(index_of_author[mess['#@'+str(j)]+':'+mess['#o'+str(j)]]) not in network or \
-                                     str(index_of_author[mess['#@'+str(i)]+':'+mess['#o'+str(i)]]) not in network[str(index_of_author[mess['#@'+str(j)]+':'+mess['#o'+str(j)]])] or \
-                                     str(index_of_author[mess['#@'+str(j)]+':'+mess['#o'+str(j)]]) not in network[str(index_of_author[mess['#@'+str(i)]+':'+mess['#o'+str(i)]])]:
+                                   str(index_of_author[mess['#@'+str(j)]+':'+mess['#o'+str(j)]]) not in network or \
+                                     str(index_of_author[mess['#@'+str(i)]+':'+mess['#o'+str(i)]]) not in network[str(index_of_author[mess['#@'+str(j)]+':'+mess['#o'+str(j)]])]\
+                                     or \
+                                    str(index_of_author[mess['#@'+str(j)]+':'+mess['#o'+str(j)]]) not in network[str(index_of_author[mess['#@'+str(i)]+':'+mess['#o'+str(i)]])]:
                             add_networks(network,str(index_of_author[mess['#@'+str(i)]+':'+mess['#o'+str(i)]]),str(index_of_author[mess['#@'+str(j)]+':'+mess['#o'+str(j)]]),1)
                             add_networks(network, str(index_of_author[mess['#@' + str(j)] + ':' + mess['#o' + str(j)]]),str(index_of_author[mess['#@' + str(i)] + ':' + mess['#o' + str(i)]]), 1)
                         else:
@@ -74,7 +75,7 @@ with codecs.open('./AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') a
 
 
 
-fr = open('./network_dict_test.json', 'w',encoding = 'utf-8',errors='ignore')
+fr = open('./inter_res/network_dict_test.json', 'w',encoding = 'utf-8',errors='ignore')
 json.dump(network,ensure_ascii=False)
 
 # fr.close()

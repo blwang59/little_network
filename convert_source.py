@@ -35,7 +35,7 @@ with codecs.open('./AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') a
 
        # print(papers_per_author.items())
 i = 1
-f1 = open('./author_with_aff.txt', 'w', encoding='utf-8')
+f1 = open('./inter_res/author_with_aff.txt', 'w', encoding='utf-8')
 for items in papers_per_author:
     if papers_per_author[items] > 5 and items!=':' :
         f1.write(str(i)+' '+str(papers_per_author[items])+' '+str(items))
