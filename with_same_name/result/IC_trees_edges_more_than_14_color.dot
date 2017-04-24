@@ -1,0 +1,18 @@
+strict digraph G{
+"Enhong Chen" -> "Tengfei Bao"
+"Enhong Chen" -> "Huanhuan Cao"
+"Huanhuan Cao" -> "Tengfei Bao"
+"Enhong Chen" -> "Zhenya Zhang"
+"Enhong Chen" -> "Haiping Ma"
+"Enhong Chen" -> "Weiwei Wu"
+"Enhong Chen" -> "Dawei Hu"
+"Enhong Chen" -> "Qiming Luo"
+"Minming Li" -> "Weiwei Wu"
+"Enhong Chen" -> "Hengshu Zhu"
+"Enhong Chen" -> "Ji Hong"
+"Enhong Chen" -> "Tieyun Qian"
+"Enhong Chen" -> "Zhen Liao"
+"Enhong Chen" -> "Minming Li"
+"Huanhuan Cao" -> "Hengshu Zhu"
+"Enhong Chen" -> "Biao Xiang"
+"Huanhuan Cao" [color = red]"Weiwei Wu" [color = red]"Tengfei Bao" [color = red]"Hengshu Zhu" [color = red]}
