@@ -5,7 +5,7 @@ pc = 0
 author_list = []
 size=0
 sizeo=0
-with codecs.open('./AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') as f:
+with codecs.open('../aminernetwork/AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') as f:
     for line in f:
         if line != '\n':
             line1 = line.rstrip().split(' ', 1)
@@ -32,7 +32,7 @@ with codecs.open('./AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') a
             size = 0
             sizeo = 0
 
-
+# print (len(papers_per_author.keys()))
        # print(papers_per_author.items())
 i = 1
 f1 = open('./inter_res/author_with_aff.txt', 'w', encoding='utf-8')
