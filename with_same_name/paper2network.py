@@ -39,6 +39,7 @@ class Graph:
 author_dict = {}
 network_dict = {}
 first_time = {}
+last_time = {}
 mess = {}
 def add_networks(dic, key_a, key_b, val):
     if key_a in dic:
@@ -46,7 +47,7 @@ def add_networks(dic, key_a, key_b, val):
     else:
         dic.update({key_a: {key_b: val}})
 # f1 = open('C:/Users/Administrator/Desktop/net.txt', 'w', encoding='utf-16')
-with codecs.open('../AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') as f:
+with codecs.open('../../aminernetwork/AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') as f:
     for line in f:
         if line != '\n':
             l = line.rstrip().split(' ',1)
@@ -58,38 +59,64 @@ with codecs.open('../AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') 
                 for a in authors:
                     if a not in first_time or int(mess['#t']) < first_time[a]:
                         first_time[a] = int(mess['#t'])
-                    if a not in author_dict:
-                        author_dict[a] = 1
-                    else:
-                        author_dict[a] += 1
+
+                    if a not in last_time or int(mess['#t']) > last_time[a]:
+                        last_time[a] = int(mess['#t'])
+                    
             mess={}
 
 
-with codecs.open('../AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') as f:
+with codecs.open('../../aminernetwork/AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') as f:
     for line in f:
-        if line[:2] == '#@':
-            authors = line[3:-1].split(';')
-            if len(authors) > 1:
+        if line != '\n':
+            l = line.rstrip().split(' ',1)
+            if len(l) > 1:
+                mess[l[0]] = l[1]
+        if line == '\n':
+            if '#@' in mess and '#t' in mess and mess['#t'].isdigit():
+                authors = mess['#@'].split(';')
+                for a in authors:
+                    if a in last_time and a in first_time and last_time[a] != first_time[a]:
+
+                        if a not in author_dict:
+                            author_dict[a] = float(last_time[a]-int(mess['#t']))/float(last_time[a]-first_time[a])
+                        else:
+                            author_dict[a] += float(last_time[a]-int(mess['#t']))/float(last_time[a]-first_time[a])
+                    else:
+                        author_dict[a]=1
+
+with codecs.open('../../aminernetwork/AMiner-Paper.txt', 'r', encoding='utf-8', errors='ignore') as f:
+    for line in f:
+        if line != '\n':
+            l = line.rstrip().split(' ',1)
+            if len(l) > 1:
+                mess[l[0]] = l[1]
+        if line == '\n':
+            if '#@' in mess and '#t' in mess and mess['#t'].isdigit():
+                authors = mess['#@'].split(';')
                 for author in authors:
                     for author2 in authors:
                         if author in author_dict and author2 in author_dict\
-                        and author_dict[author]>5 and author_dict[author2]>5 \
+                        and author2 in last_time and author2 in first_time and author in last_time and author in first_time\
+                        and last_time[author2]!=first_time[author2]\
                         and first_time[author] < first_time[author2]\
                         and authors.index(author) > authors.index(author2):
                             if author not in network_dict or author2 not in network_dict[author]:
-                                add_networks(network_dict, author, author2, 1)
+                                add_networks(network_dict, author, author2, float(last_time[author2]-int(mess['#t']))/float(last_time[author2]-first_time[author2]))
+
                                 # add_networks(network_dict, author2, author, 1)
                                 
                             else:
-                                network_dict[author][author2] += 1
+                                network_dict[author][author2] += float(last_time[author2]-int(mess['#t']))/float(last_time[author2]-first_time[author2])
                                 # network_dict[author2][author] += 1
 
 
 for i in network_dict:
     for j in network_dict[i]:
-        network_dict[i][j] = network_dict[i][j]/int(author_dict[j])
+        if author_dict[j]!=0:
+            network_dict[i][j] = network_dict[i][j]/float(author_dict[j])
 
-fr = open('./inter_res/network_withsamename_sorted_0424.json', 'w',encoding = 'utf-8',errors='ignore')
+fr = open('./inter_res/network_withsamename_sorted_0426_withweight.json', 'w',encoding = 'utf-8',errors='ignore')
 json.dump(network_dict,fr,ensure_ascii=False)
 
 

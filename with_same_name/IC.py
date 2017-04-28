@@ -92,7 +92,7 @@ def draw_trees(docsource,docdes):
     # for i in count_final:
     #     fr.write('"'+count_final[i]+'"'+' -> '+'"'+i+'"'+'\n')
     for edge in edge_count:
-        if edge_count[edge] >= 2:
+        if edge_count[edge] >= 5:
             fr.write(edge+'\n')
 
     for i in count:
@@ -106,5 +106,5 @@ def draw_trees(docsource,docdes):
 
 
 
-ICmodel(network,"Jiawei Han",100)
-draw_trees('./inter_res/ICres_0424.txt','./result/IC_trees_edges_more_than_2_hanjiawei_color.dot')
+ICmodel(network,"Hui Xiong",100)
+draw_trees('./inter_res/ICres_0424.txt','./result/weighted_edge/xionghui_5.dot')
