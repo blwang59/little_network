@@ -8,6 +8,7 @@ neighbors = {}
 
 
 authors_merged=set()
+authors_del=set(network.keys())
 
 # with codecs.open('./inter_res/author_with_aff.txt', 'r', encoding='utf-8', errors='ignore') as f1:
 #     for line in f1:
@@ -17,7 +18,7 @@ authors_merged=set()
 
 for i in network:
 
-	neighbors[i] = len(network[i].keys())
+	neighbors[i] = set(network[i].keys())
 	
 
 # 
@@ -42,48 +43,63 @@ for i in network:
 # 				# del papers_author[j[0]+':'+j[1]]
 count = 0
 
-temp_authors = set()
+temp_authors_merged = set(network.keys())
+
+temp_del_authors = set(network.keys())
 
 
-for i in network:
+flag=1#to tell if merge should be continued
+while flag == 1:
 
-	for j in network:
 
-		if j==i:
-			pass
+	for i in temp_authors_merged:
 
-		
-		elif i.split(':')[0] == j.split(':')[0]:
+		for j in temp_del_authors:
+
+			if j==i:
+				pass
+
 			
-			common_neighbors = len(set(network[i].keys()) & set(network[j].keys()))
-			# print('i:'+i)
-			# print('j:'+j)
-
-			if float(common_neighbors)/float(neighbors[i]) >=0.3 or float(common_neighbors)/float(neighbors[j]) >=0.3:
-				# if i in authors_merged and j in authors_merged:
-				print('merged!')
-				count+=1
-				authors_merged.add(i+';'+j.split(':')[1]) 
-					
+			elif i.split(':')[0] == j.split(':')[0]:
 				
+				common_neighbors = len(neighbors[i] & neighbors[j])
+				# print('i:'+i)
+				# print('j:'+j)
 
-				# print(i+';'+j.split(':')[1])
+				if float(common_neighbors)/float(len(neighbors[i])) >=0.3 or float(common_neighbors)/float(len(neighbors[j])) >=0.3:
+					# if i in authors_merged and j in authors_merged:
+					# print('merged!')
+					# count+=1
+					authors_merged.add(i+';'+j.split(':')[1]) 
+					neighbors[i+';'+j.split(':')[1]] = neighbors[i] | (neighbors[j])
+					
+					if i in authors_del:
+						authors_del.remove(i)
+					if j in authors_del:
+						authors_del.remove(j)
 
-print(count)
-temp_authors = authors_merged
+					
+					
+					flag = 1
+				else:
+					flag = 0
+
+					# print(i+';'+j.split(':')[1])
+
+	# print(count)
+	temp_authors_merged = authors_merged
+
+	temp_del_authors = authors_del
 
 
-
-
-
-
+print('end')
 
 
 i = 1
 fr = open('./inter_res/author_with_aff_merged_30.txt', 'w', encoding='utf-8')
 for items in authors_merged:
     if items!=':' :
-        fr.write(str(i)+' '+str(authors_merged[items])+' '+str(items))
+        fr.write(str(i)+' '+str(items))
         fr.write('\n')
         i += 1
 # f1.write(str(papers_author.items()))
