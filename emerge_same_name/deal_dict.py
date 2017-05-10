@@ -7,8 +7,8 @@ neighbors = {}
 # authors_merged={}
 
 
-authors_merged=set()
-authors_del=set(network.keys())
+authors_merged=set(network.keys())
+# authors_del=set(network.keys())
 
 # with codecs.open('./inter_res/author_with_aff.txt', 'r', encoding='utf-8', errors='ignore') as f1:
 #     for line in f1:
@@ -22,6 +22,26 @@ for i in network:
 	
 
 # 
+
+class authorNode(object):
+	"""docstring for authorNode"""
+	def __init__(self, name, aff = set()):
+		super(authorNode, self).__init__()
+		self.name = name
+		self.aff = aff
+		#aff is a set
+
+	def is_same(self, anothernode):
+		if self.name == anothernode.name and self.aff == anothernode.aff:
+			return True
+		else:
+			return False
+
+	def add_aff(self, affs):
+		self.aff.add(affs)
+
+
+
 
 
 # names_affs=[]
@@ -43,20 +63,24 @@ for i in network:
 # 				# del papers_author[j[0]+':'+j[1]]
 count = 0
 
+# temp_authors_merged = set(network.keys())
+
+authors_remaining = dict.fromkeys(network.keys())
+
+flag=1
+
 temp_authors_merged = set(network.keys())
-
-temp_del_authors = set(network.keys())
-
-
-flag=1#to tell if merge should be continued
+#to tell if merge should be continued
 while flag == 1:
-
-
+	flag = 0
+	
+	print (count)
+	find = False
 	for i in temp_authors_merged:
 
-		for j in temp_del_authors:
+		for j in authors_remaining:
 
-			if j==i:
+			if j==i or authors_remaining[j]==1:
 				pass
 
 			
@@ -66,30 +90,53 @@ while flag == 1:
 				# print('i:'+i)
 				# print('j:'+j)
 
-				if float(common_neighbors)/float(len(neighbors[i])) >=0.3 or float(common_neighbors)/float(len(neighbors[j])) >=0.3:
+				if float(common_neighbors)/float(len(neighbors[i])) >= 0.3 or float(common_neighbors)/float(len(neighbors[j])) >= 0.3:
 					# if i in authors_merged and j in authors_merged:
 					# print('merged!')
 					# count+=1
-					authors_merged.add(i+';'+j.split(':')[1]) 
-					neighbors[i+';'+j.split(':')[1]] = neighbors[i] | (neighbors[j])
-					
-					if i in authors_del:
-						authors_del.remove(i)
-					if j in authors_del:
-						authors_del.remove(j)
+					authors_merged.add(i+';'+j.split(':')[1])
 
+					# if ';' in set(i):
+					# 	print ('yes!')
+					neighbors[i+';'+j.split(':')[1]] = neighbors[i] | neighbors[j]
 					
-					
+					# if i in authors_del:
+					# 	authors_del.remove(i)
+					# if j in authors_del:
+					# 	authors_del.remove(j)
+
+					if i in authors_remaining:
+						authors_remaining[i]=1
+					if j in authors_remaining:
+						authors_remaining[j]=1
+
+
+					if i in authors_merged:
+						authors_merged.remove(i)
+					if j in authors_merged:
+						authors_merged.remove(j)
+						
 					flag = 1
-				else:
-					flag = 0
+					find = True
+					break
 
-					# print(i+';'+j.split(':')[1])
+		if find:
+			break
+	if flag ==0 : 
+		break
+		
 
-	# print(count)
+
+		
+
+	print(str(flag))
+	count+=1
+	print('turns'+str(count))
+
 	temp_authors_merged = authors_merged
+	# temp_authors_merged = authors_merged
 
-	temp_del_authors = authors_del
+	# authors_remaining = authors_del
 
 
 print('end')

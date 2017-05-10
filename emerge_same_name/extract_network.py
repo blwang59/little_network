@@ -43,17 +43,41 @@ with codecs.open('../../aminernetwork/AMiner-Paper.txt', 'r', encoding='utf-8', 
                 for j in range(i+1,min(size,sizeo)):
                     # print('1')
                     if mess['#@'+str(i)]+':'+mess['#o'+str(i)] in index_of_author and \
-                        mess['#@' + str(j)] + ':' + mess['#o' + str(j)] in index_of_author:
+                        mess['#@' + str(j)] + ':' + mess['#o' + str(j)] in index_of_author and mess['#o'+str(i)] != '' and mess['#o'+str(j)] != '':
                         # print (str(mess['#@'+str(i)]+':'+mess['#o'+str(i)]))
-                        add_networks(network,mess['#@'+str(i)]+':'+mess['#o'+str(i)],mess['#@'+str(j)]+':'+mess['#o'+str(j)],1)
-                        add_networks(network,mess['#@' + str(j)] + ':' + mess['#o' + str(j)],mess['#@' + str(i)] + ':' + mess['#o' + str(i)], 1)
+                        # s1=set()
+                        # s2=set()
+                        # s1.add(mess['#o'+str(i)])
+                        # s2.add(mess['#o'+str(j)])
                         
+                        # t1=mess['#@'+str(i)],s1
+                        # t2=mess['#@'+str(j)],s2
+                        # if t1[1] and t2[1]:
+                        #     add_networks(network,t1,t2,1)
+                        #     add_networks(network,t2,t1,1)
+                       
+
+                        # print(t2)
+
+                        if mess['#@'+str(i)]+':'+mess['#o'+str(i)]  not in network or mess['#@'+str(j)]+':'+mess['#o'+str(j)] not in network \
+                        or mess['#@'+str(i)]+':'+mess['#o'+str(i)] not in network[mess['#@'+str(j)]+':'+mess['#o'+str(j)]]\
+                        or mess['#@'+str(j)]+':'+mess['#o'+str(j)] not in network[mess['#@'+str(i)]+':'+mess['#o'+str(i)]]:
+
+                            add_networks(network,mess['#@'+str(i)]+':'+mess['#o'+str(i)],mess['#@'+str(j)]+':'+mess['#o'+str(j)],1)
+                            add_networks(network,mess['#@' + str(j)] + ':' + mess['#o' + str(j)],mess['#@' + str(i)] + ':' + mess['#o' + str(i)], 1)
+                        else: 
+                            network[mess['#@'+str(i)]+':'+mess['#o'+str(i)]][mess['#@'+str(j)]+':'+mess['#o'+str(j)]]+=1
+                            network[mess['#@'+str(j)]+':'+mess['#o'+str(j)]][mess['#@'+str(i)]+':'+mess['#o'+str(i)]]+=1 
+
+
+
             mess = {}
 
             size = 0
             sizeo = 0
 
 
-fr = open('./inter_res/network_dict_test.json', 'w',encoding = 'utf-8',errors='ignore')
+
+fr = open('./inter_res/network_dict_with_conumbers.json', 'w',encoding = 'utf-8',errors='ignore')
 json.dump(network,fr,ensure_ascii=False)
 
