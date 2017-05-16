@@ -12,6 +12,3 @@ ICmodel.py->ICres.txt
 draw_trees->ICres1.dot
 
 ICres1.dot->IC.pdf
-
-## references
-* [lda](https://yq.aliyun.com/articles/26029)
