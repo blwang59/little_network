@@ -1,0 +1,5 @@
+strict digraph G{
+"Enhong Chen:University of Science and Technology of China" -> "Chun Jason Xue:City University of Hong Kong"
+"Enhong Chen:University of Science and Technology of China" -> "Song Jiang:Wayne State University"
+"Chun Jason Xue:City University of Hong Kong" -> "Yiran Chen:University of Pittsburgh"
+}

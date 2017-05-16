@@ -1,7 +1,7 @@
 import json
 import random
 import codecs
-network = json.load(open('./inter_res/network_withsamename_sorted_0424.json'))
+network = json.load(open('./inter_res/network_withsamename_sorted_0426_withweight.json'))
 
 
 def ICmodel(net,seeds,times):
@@ -92,7 +92,7 @@ def draw_trees(docsource,docdes):
     # for i in count_final:
     #     fr.write('"'+count_final[i]+'"'+' -> '+'"'+i+'"'+'\n')
     for edge in edge_count:
-        if edge_count[edge] >= 5:
+        if edge_count[edge] >= 15:
             fr.write(edge+'\n')
 
     for i in count:
@@ -106,5 +106,5 @@ def draw_trees(docsource,docdes):
 
 
 
-ICmodel(network,"Hui Xiong",100)
-draw_trees('./inter_res/ICres_0424.txt','./result/weighted_edge/xionghui_5.dot')
+ICmodel(network,"Enhong Chen",100)
+draw_trees('./inter_res/ICres_0424.txt','./result/weighted_edge/chenehong_15.dot')

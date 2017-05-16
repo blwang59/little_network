@@ -1,0 +1,7 @@
+strict digraph G{
+"Jian Pei:Simon Fraser University" -> "Alexandra Fedorova:Simon Fraser University"
+"Enhong Chen:University of Science and Technology of China" -> "Chun Jason Xue:City University of Hong Kong"
+"Enhong Chen:University of Science and Technology of China" -> "Song Jiang:Wayne State University"
+"Enhong Chen:University of Science and Technology of China" -> "Jian Pei:Simon Fraser University"
+"Enhong Chen:University of Science and Technology of China" -> "Hui Xiong:Rutgers University"
+}

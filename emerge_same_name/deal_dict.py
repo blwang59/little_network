@@ -76,9 +76,16 @@ while flag == 1:
 	
 	print (count)
 	find = False
+	index = 0
+	ff = 0
 	for i in temp_authors_merged:
-
+		if ff == 1 :
+			break
 		for j in authors_remaining:
+			index += 1
+			if index > 10000000:
+				ff = 1
+				break
 
 			if j==i or authors_remaining[j]==1:
 				pass
@@ -156,7 +163,10 @@ fr.close()
 
 
 
-	
+for i in network_dict:
+    for j in network_dict[i]:
+        if author_dict[j]!=0:
+            network_dict[i][j] = network_dict[i][j]/float(author_dict[j])
 
 
 

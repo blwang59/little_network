@@ -1,0 +1,10 @@
+strict digraph G{
+"Xia Wang:Nokia Research Center, Beijing, China" -> "Ying Liu:Nokia Research Center, Beijing, China"
+"Jian Chen:Tsinghua University, Beijing, China" -> "Michael Chau:The University of Hong Kong, Pokfulam, Hong Kong"
+"Hui Xiong:Rutgers University, Newark, NJ, USA" -> "Jilei Tian:Nokia Research Center, Beijing, China"
+"Hui Xiong:Rutgers University, Newark, NJ, USA" -> "Jian Chen:Tsinghua University, Beijing, China"
+"Michael Chau:The University of Hong Kong, Pokfulam, Hong Kong" -> "Hsinchun Chen:The University of Arizona, Tucson, AZ"
+"Enhong Chen:University of Science and Technology of China, Hefei, China" -> "Jilei Tian:Nokia Research Center, Beijing, China"
+"Jilei Tian:Nokia Research Center, Beijing, China" -> "Enhong Chen:University of Science and Technology of China, Hefei, China"
+"Hui Xiong:Rutgers University, Newark, NJ, USA" -> "Enhong Chen:University of Science and Technology of China, Hefei, China"
+}

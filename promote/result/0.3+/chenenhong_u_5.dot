@@ -1,0 +1,14 @@
+strict digraph G{
+"Jian Pei:Simon Fraser University" -> "Philip S. Yu:IBM T. J. Watson Research Center"
+"Jian Pei:Simon Fraser University" -> "Ke Wang:Simon Fraser University"
+"Enhong Chen:University of Science and Technology of China" -> "Jian Pei:Simon Fraser University"
+"Daxin Jiang:State University of New York at Buffalo" -> "Aidong Zhang:State University of New York at Buffalo"
+"Enhong Chen:University of Science and Technology of China" -> "Lidong Zhou:Microsoft Research"
+"Jian Chen:Tsinghua University, Beijing, China" -> "Michael Chau:The University of Hong Kong, Pokfulam, Hong Kong"
+"Lidong Zhou:Microsoft Research" -> "Paramvir Bahl:Microsoft Research"
+"Ke Wang:Simon Fraser University" -> "Martin Ester:Simon Fraser University"
+"Philip S. Yu:IBM T. J. Watson Research Center" -> "Charu C. Aggarwal:IBM T. J. Watson Research Center"
+"Enhong Chen:University of Science and Technology of China" -> "Hui Xiong:Rutgers University"
+"Hui Xiong:Rutgers University" -> "Jian Chen:Tsinghua University, Beijing, China"
+"Jian Pei:Simon Fraser University" -> "Daxin Jiang:State University of New York at Buffalo"
+}
